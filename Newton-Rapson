@@ -1,9 +1,11 @@
 #METODO DE NEWTON RAPSHON
 clc;
+
 #ingresa la funcion 
 fun_x = input('Escribe la funcion entre parentesis: ','s')
 fun_x = inline(fun_x);
 
+#ingresa la funcion derivada
 deri_x = input('Escribe la derivada de la funcion entre parentesis: ','s') 
 deri_x = inline(deri_x);
 
@@ -12,11 +14,12 @@ x_i = input('Ingrese el valor de x inicial: ');
 itera = input('Ingrese el numero de iteraciones: ');
 i=1;
 
+#funcion para determinar el error del metodo
 function ea = errora(xa,xp)
     ea = abs(((xa-xp)/xa)*100);
 end
 
-
+#Bucle para que comienze a ejecutarse el metodo matematico
 if deri_x(x_i) == 0
     fprintf ('no se puede hallar una raiz');
 else
