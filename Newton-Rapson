@@ -1,0 +1,39 @@
+#METODO DE NEWTON RAPSHON
+clc;
+#ingresa la funcion 
+fun_x = input('Escribe la funcion entre parentesis: ','s')
+fun_x = inline(fun_x);
+
+deri_x = input('Escribe la derivada de la funcion entre parentesis: ','s') 
+deri_x = inline(deri_x);
+
+x_i = input('Ingrese el valor de x inicial: ');
+
+itera = input('Ingrese el numero de iteraciones: ');
+i=1;
+
+function ea = errora(xa,xp)
+    ea = abs(((xa-xp)/xa)*100);
+end
+
+
+if deri_x(x_i) == 0
+    fprintf ('no se puede hallar una raiz');
+else
+
+    fprintf("%s\t %s\t\t  %s\n",'i','Xi',' Ea ');
+        
+  while i <= itera
+       fprintf('%d\t',i); 
+       fprintf('%.8f\t',xi);
+       xn = x_i-(fun_x(x_i)/deri_x(x_i));
+       fprintf('%.8f\t',errora(xn,x_i));   
+       x_i = xn;
+       fprintf ("\n");
+       i++;
+
+   endwhile
+       fprintf ("\n");
+       fprintf('\nLA RAIZ APROXIMADA ES: %.8f\n',xn);
+            
+endif
