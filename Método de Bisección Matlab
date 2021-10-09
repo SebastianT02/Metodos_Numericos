@@ -1,0 +1,30 @@
+%Metodo de la bisección MATLAB 2021
+
+clear,clc
+%Pido todos las variables al usuario,h = funcion f(x), a limite inferior, b limite superior, y la tolerancia aceptada
+h = input('Ingrese función a analizar: ');
+f = inline(h);
+a = input('Ingrese límite inferior del intervalo: ');
+b = input('Ingrese límite superior del intervalo: ');
+tol = input('Indique la tolerancia deseada: ');
+
+%Luego iniciamos algunos valores para las variables, c =  punto medio entre a y b, n = numero de iteracion,MEP = maximo error posible
+c = 0; n = 0; MEP = (b-a)/2;
+
+%Se encarga de mostrar las partes al inicio de cada columna 
+fprintf('\t  n \t\ta \t\t  c \t\t b \t\t MEP\n')
+
+%Continuamos iteraciones hasta que el error maximo sea mayor a la tolerancia establecida por el usuario.
+while( MEP > tol )
+    c = (a+b)/2;
+    disp([n,a,c,b,MEP])  %creamos un vector fila para mostrar los datos correspondientes
+    if( f(a)*f(c)<0 )
+        b = c;
+    else a = c;
+    end
+    MEP = (b-a)/2;
+    n = n+1;
+end
+
+%Imprimimos el valor de la raiz aproximada según su tolerancia dad por usuario
+fprintf('Raíz encontrada con una tolerancia de %f:\n\t%f\n',tol,c)
