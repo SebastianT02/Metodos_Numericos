@@ -7,9 +7,9 @@ def ingreso_datos():
     """
     try:
         parametros = input("Ingrese un numero: ")
-        assert "," not in parametros,"Utilice el (.) para indicar decimal"
+        assert "," not in parametros,"Utilice el (.) para indicar que es un decimal"
     except:
-        print("Utilice el (.) para indicar decimal")
+        print("Utilice el (.) para indicar que es un decimal")
 
     return parametros
 
@@ -67,7 +67,7 @@ def decimal_binarioneg(n):
     Tranformar un numero entero a binario negativo
     ----------
     n : int
-        Numero racional  a convertir
+        Numero racional a convertir
 
     Returns
     -------
@@ -94,7 +94,7 @@ def binario(num):
     Retorna un numero binario
     ----------
     num : str
-        numero del cual se encontrar el exponente sesgado
+        numero del cual se debe encontrar el exponente sesgado
     Returns
     -------
     e :  int
@@ -164,7 +164,7 @@ def bits(e):
 
 def mantisa(e,n):
     """
-    En base al numero binario y al exponente sesgado devuelve la mantisa de 32 bits
+    En base al numero binario y al exponente sesgado nos devuelve la mantisa de 32 bits
     ----------
     e : Int
         Exponente sesgado
@@ -226,6 +226,41 @@ def dbng(n):
         
     return s  
 
+
+def exponente2(s):
+    """
+    Parameters
+    ----------
+    s : exponente sesgado
+
+    Returns
+    -------
+    e : Entero
+       exponente
+
+    """
+    e = db(s)-127
+    return e
+    
+def encontrar_numero(e,m):
+    """
+    Parameters
+    ----------
+    e : Int
+        Exponente Sesgado
+    m : String
+        Numero Binario
+
+    Returns
+    -------
+    numero:Float
+        Numero transofrmado decimal
+    """
+    m= "1."+m
+    numero = float(m)* 10**e
+    
+    return numero
+
 #Prueba de las funciones y funcionalidad del programa
 
 parametros = ingreso_datos()  
@@ -247,6 +282,8 @@ elif n == 3: # En el caso que existan 3 parametros
     print("Numero a transformar",parametros)
     par = parametros.split()
     sig = sgn(parametros)
+    e = exponente2(par[1])
+    n = encontrar_numero(e, par[2])
     numeros = str(n).split(".")
     print("Signo (1 bit): ",par[0])
     print("Exponente (8 bits): ",par[1])
@@ -259,3 +296,21 @@ elif n == 3: # En el caso que existan 3 parametros
     
 else: # En el caso que no se cumpla ninguna de las alternativas propuestas
     print("Numero de parametros incorrectos")
+    
+    #newFileBytes = [ 30 ]
+
+    #newFileBytes = [ 125, 125, 125, 125 ]
+
+    newFile = open("filename.txt", "wb")
+
+    newFile.write(parametros.to_bytes(2, byteorder='big')) # ,signed=True
+
+    newFile.write(parametros.to_bytes(4, byteorder='big')) # ,signed=True
+        
+    #newFileBytes[0] = a
+
+    #for byte in newFileBytes:
+    #    newFile.write(byte.to_bytes(1, byteorder='big',signed=True))
+        
+    newFile.close()
+    # read from file
