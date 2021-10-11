@@ -296,21 +296,22 @@ elif n == 3: # En el caso que existan 3 parametros
     
 else: # En el caso que no se cumpla ninguna de las alternativas propuestas
     print("Numero de parametros incorrectos")
+  
+# Guardar datos    
+#newFileBytes = [ 30 ]
+
+#newFileBytes = [ 125, 125, 125, 125 ]
+
+newFile = open("filename.txt", "wb")
+
+newFile.write(parametros.to_bytes(2, byteorder='big')) # ,signed=True
+
+newFile.write(parametros.to_bytes(4, byteorder='big')) # ,signed=True
     
-    #newFileBytes = [ 30 ]
+#newFileBytes[0] = a
 
-    #newFileBytes = [ 125, 125, 125, 125 ]
-
-    newFile = open("filename.txt", "wb")
-
-    newFile.write(parametros.to_bytes(2, byteorder='big')) # ,signed=True
-
-    newFile.write(parametros.to_bytes(4, byteorder='big')) # ,signed=True
-        
-    #newFileBytes[0] = a
-
-    #for byte in newFileBytes:
-    #    newFile.write(byte.to_bytes(1, byteorder='big',signed=True))
-        
-    newFile.close()
-    # read from file
+#for byte in newFileBytes:
+#    newFile.write(byte.to_bytes(1, byteorder='big',signed=True))
+    
+newFile.close()
+# read from file
