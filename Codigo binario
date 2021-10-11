@@ -1,0 +1,261 @@
+def ingreso_datos():
+    """
+    Controla el ingreso de los datos
+    -------
+    parametros String
+            datos a convertir
+    """
+    try:
+        parametros = input("Ingrese un numero: ")
+        assert "," not in parametros,"Utilice el (.) para indicar decimal"
+    except:
+        print("Utilice el (.) para indicar decimal")
+
+    return parametros
+
+def sgn(numero):
+    """
+    Devuelve un signo en formato decimal o 754
+    ----------
+    numero : str
+        Numero Real.
+
+    Returns
+    -------
+    signo: str
+         Signo Correspondiente
+    """
+    auxn = numero.split()
+    
+    if len(auxn) == 1:
+        if float(numero) < 0:
+            signo = "1"
+        else:
+            signo = "0"
+            
+    elif len(auxn) == 3:
+         if auxn[0] == "0":
+             signo = "+"
+         elif auxn[0] == "1":
+             signo = "-"
+    else:
+        signo = "Parametros no admitidos"
+        
+    return signo
+
+def decimal_binario(x):
+    """
+    Transforma un numero decimal a binario
+    ----------
+    x : Numero Real
+
+    Returns
+    -------
+    binario: String
+        Numero binario tranformado
+
+    """
+    # Transformacion de la parte entera
+    x = str(x).replace("-","")
+    bi1 = bin(int(x))
+    print(bi1)
+    bi1 = int(str(bi1)[2::])
+    return float(bi1)
+
+def decimal_binarioneg(n):
+    """
+    Tranformar un numero entero a binario negativo
+    ----------
+    n : int
+        Numero racional  a convertir
+
+    Returns
+    -------
+    s : Entero
+        Devuelve un numero  racional en binario
+
+    """
+    dec = float("0."+n)
+    listab = []
+    c = 1
+    while c < 20:
+        dec = dec*2
+        aux = str(dec).split(".")
+        listab.append(aux[0])
+        dec = float("0."+aux[1])
+        c += 1
+        
+    bi2 = "".join(listab)
+    
+    return float("0."+bi2)
+  
+def binario(num):
+    """
+    Retorna un numero binario
+    ----------
+    num : str
+        numero del cual se encontrar el exponente sesgado
+    Returns
+    -------
+    e :  int
+        exponente sesgado
+
+    """
+    auxn = num.split()
+    fnum = str(float(num))
+    if len(auxn) == 1:
+        fnum = fnum.split(".")
+        bi =  decimal_binario(fnum[0])+decimal_binarioneg(fnum[1])        
+    elif len(auxn) == 3:
+        
+        pass
+    else:
+        bi = "Parametros no admitidos"
+    
+    return bi
+
+def exponente(binario):
+    """
+    Obtiene el exponente sesgado del numero binario
+    ----------
+    binario : str
+        numero decimal en base binaria
+    Returns
+    -------
+    e: Int
+       exponente sesgado
+
+    """
+    c = 0
+    e = 0
+    if binario >= 1:
+        c = 0
+        while binario > 2:
+           binario = binario/10
+           c += 1 
+        e = c    
+     
+    elif binario < 1:
+        while binario < 1:
+            binario = binario*10
+            c += 1
+        e=-(c)
+    
+    return e
+
+def bits(e):
+    """
+    Devuelve una cadena de 8 bits 
+    ----------
+    e : Int
+        Exponente sesgado
+
+    ochobits
+    -------
+    ochobits: Int
+            Numero binario
+
+    """
+    ochobits = decimal_binario(127+e)
+    if len(str(int(ochobits))) < 10:
+        ochobits = "0"+str(ochobits)
+
+    return ochobits
+
+def mantisa(e,n):
+    """
+    En base al numero binario y al exponente sesgado devuelve la mantisa de 32 bits
+    ----------
+    e : Int
+        Exponente sesgado
+    n : Numero Binario
+        DESCRIPTION.
+
+    Returns
+    -------
+    man: Int
+        numero de 32 bits
+
+    """
+    num = n*10**-e
+    
+    num1 = str(num)[2::]
+    
+    while len(num1) < 32:
+          num1 += "0"
+          
+    return num1
+
+def db(n):
+    """
+    Realiza una conversion de un numero binario a decimal
+    ----------
+    n : Int
+        Numero Binario
+
+    Returns
+    -------
+    s : Int
+        Numero convertido
+
+    """
+    l = len(str(n))-1
+    s = 0
+    for j in str(n):
+        s+=int(j)*(2**l)
+        l-=1
+        
+    return s    
+
+def dbng(n):
+    """
+    Devuelve un valor decimal en base a un numero binario
+    ----------
+    n : Int
+        Binario Parte Decimal
+
+    Return
+    -------
+    s : int
+       Devuelve la suma de los valores, este es el valor decimal 
+
+    """
+    s = 0
+    for i,j in enumerate (n):
+        s+=int(j)*(2**-(i+1))
+        
+    return s  
+
+#Prueba de las funciones y funcionalidad del programa
+
+parametros = ingreso_datos()  
+n = len(parametros.split())
+if n == 1:  # En caso de que exista un solo parametro
+    bi=binario(parametros)
+    e=exponente(bi)
+    print("Signo (1 bit): ",sgn(parametros))
+    print("Exponente (8 bits): ",bits(e))
+    print("Mantisa(32 bits): ",mantisa(e,bi))
+    print("-"*50)
+    print("Numero En formato IEEE 754")
+    print("-"*50)
+    print(sgn(parametros)," ",bits(e)," ",mantisa(e,bi))
+    print("-"*50)
+    
+elif n == 3: # En el caso que existan 3 parametros
+    
+    print("Numero a transformar",parametros)
+    par = parametros.split()
+    sig = sgn(parametros)
+    numeros = str(n).split(".")
+    print("Signo (1 bit): ",par[0])
+    print("Exponente (8 bits): ",par[1])
+    print("Mantisa(32 bits): ",par[2])
+    print("-"*50)
+    print("Numero En formato Decimal")
+    print("-"*50)
+    print(sig,db(int(numeros[0])) + dbng(numeros[1]))
+    print("-"*50)
+    
+else: # En el caso que no se cumpla ninguna de las alternativas propuestas
+    print("Numero de parametros incorrectos")
