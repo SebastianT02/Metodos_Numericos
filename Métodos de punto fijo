@@ -1,0 +1,39 @@
+import numpy as np
+
+#DECLARO UNA FUNCIÓN DE PUNTO FIJO 
+def puntofijo(gx, a, tolera, iteramax=15):
+    i = 1                                    # ITERACIÓN 
+    b = gx(a)
+    tramo = abs(b - a)         
+    while (tramo >= tolera and i <= iteramax):
+        a = b
+        b = gx(a)
+        tramo = abs(b - a)
+        i = i + 1
+    respuesta = b
+
+    # Validar respuesta
+    if (i >= iteramax):
+        respuesta = np.nan
+    return (respuesta)
+
+
+# PROGRAMA IMPLANTADO DADO
+
+# INGRESO FUNCIONES IMPUESTAS DEL MÉTODO
+fx = lambda x: np.exp(-x) - x
+gx = lambda x: np.exp(-x)
+
+#DATOS PARA LLAMAR LA FUNCIÓN DEL MÉTODO DE PUNTO FIJO 
+a = 0  # intervalo
+b = 1
+tolera = 0.001
+iteramax = 15  # itera máximo
+muestras = 51  # gráfico
+tramos = 50
+
+# PROCEDIMIENTO
+respuesta = puntofijo(gx, a, tolera)
+
+# SALIDA
+print(respuesta)
