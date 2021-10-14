@@ -1,0 +1,23 @@
+% Metodo de la secante
+clear,clc
+
+i_f = input('Ingrese una funcion: ');
+f = inline(i_f);
+x0 = input('Ingrese el primer valor x0: ');
+x1 = input('Ingrese el segundo valor x1: ');
+tolerancia = input('Ingrese la tolerancia del error en %: ');
+
+error = 100;
+n = 1;
+disp('        n          x0              x1          raiz_aprox        error(%)')
+
+while (error > tolerancia);
+  x2 = x1-f(x1)*(x1-x0)/(f(x1)-f(x0));
+  error = abs((x2-x1)/x2*100);
+  fprintf('\t%i\t%4.6f\t%4.6f\t%4.6f\t%4.6f\n',n,x0,x1,x2,error);
+  x0 = x1;
+  x1 = x2;
+  n = n+1;
+end
+  disp('La aproximacion de la raiz es: ')
+  x2
