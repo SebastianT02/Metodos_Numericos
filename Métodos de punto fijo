@@ -1,7 +1,11 @@
 import numpy as np
+import numpy as np
+import matplotlib.pyplot as plt
+import math
 
 
-def puntofijo(gx, a, tolera, iteramax=15):
+
+def puntofijo(gx, a, tolera):
     """
     Función de punto fijo que obtiene la raiz de una función,
     donde se necesita 4 valores iniciales.
@@ -13,6 +17,14 @@ def puntofijo(gx, a, tolera, iteramax=15):
     retorna la raiz de la funcion lambda dada
 
     """
+    try:
+        iteramax = int(input("Ingrese el número que desea para las iteraciones de 0 a 15 max: "))
+        if iteramax > 15:
+            iteramax = int('error')
+    except:
+        print("Dato mal ingresado, o no soporta")
+        iteramax = 15
+
     i = 1  # iteración
     b = gx(a)
     tramo = abs(b - a)
@@ -26,18 +38,26 @@ def puntofijo(gx, a, tolera, iteramax=15):
     # Validar respuesta
     if (i >= iteramax):
         respuesta = np.nan
+    nu_ite = i
+    (print("El número de iteraciones fue ", nu_ite))
     return (respuesta)
 
 # INGRESO funciones dadas
 fx = lambda x: np.exp(-x) - x
 gx = lambda x: np.exp(-x)
 
-a = 0  # intervalo
+#OTRAS FUNCIONES PARA CAMBIAR
+#lambda x: math.sin(x)
+#lambda x: math.sin(x) + x
+
+
+
+a = 0  # INTERVALO
 b = 1
 tolera = 0.001
-iteramax = 15  # itera máximo
+iteramax = 15  # ITERACIÓN MÁXIMA
 
-muestras = 51  # gráfico
+muestras = 51  # DATO DE EXTENSIÓN DEL GRÁFICO
 tramos = 50
 
 # PROCEDIMIENTO
@@ -48,13 +68,11 @@ print(respuesta)
 
 
 # GRAFICA
-# calcula los puntos para fx y gx
+# CÁLCULO DE LOS PUNTOS F(X) Y G(X)
 xi = np.linspace(a,b,muestras)
 fi = fx(xi)
 gi = gx(xi)
 yi = xi
-
-import matplotlib.pyplot as plt
 
 plt.plot(xi,fi, label='f(x)')
 plt.plot(xi,gi, label='g(x)')
@@ -67,8 +85,3 @@ plt.title('Punto Fijo')
 plt.legend()
 plt.show()
 
-
-respuesta = puntofijo(gx, a, tolera)
-
-# SALIDA
-print(respuesta)
