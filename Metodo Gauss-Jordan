@@ -1,15 +1,16 @@
 # Método de Gauss
+# Solución de Sistemas de Ecuaciones Lineales de la forma A.X=B
 
 import numpy as np
 
 # Ingreso de datos
-A = np.array([[4,2,5],
-              [2,5,8],
-              [5,4,3]])
+A = np.array([[2,1,3],
+              [1,6,9],
+              [4,3,2]])
 
-B = np.array([[60.70],
-              [92.90],
-              [56.30]])
+B = np.array([[20],
+              [30],
+              [40]])
 
 # Procedimiento
 casicero = 1e-15 # Considerar como 0
