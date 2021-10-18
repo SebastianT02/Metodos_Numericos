@@ -1,5 +1,4 @@
 # Método de Gauss
-# Solución de Sistemas de Ecuaciones Lineales de la forma A.X=B
 
 import numpy as np
 
