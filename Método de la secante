@@ -53,7 +53,7 @@ np.set_printoptions(precision=4)
 print('[xa ,\t xb , \t xc , \t tramo]')
 for i in range(0,n,1):
     print(tabla[i])
-print('raiz en: ', raiz)
+print('raiz: ', raiz)
 
 # Grafica
 import matplotlib.pyplot as plt
