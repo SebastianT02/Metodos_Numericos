@@ -1,0 +1,61 @@
+#Importacion de librerias
+import numpy as np
+import math as m
+
+def regula_falsi(f, a, b, tol=10**-3, n = 25):
+    """
+    Metodo para resolver ecuaciones no lineales (REGULA FALSI)
+    :param f: funcion a la que se le debe encontrar la raiz mediante un numero de iteraciones definidas.
+    :param a: limite inferior
+    :param b: limite superior
+    :param tol: tolerancia permitida para calcular el error del metodo
+    :param n: numero de iteraciones maximas.
+    :return: solucion de la ecuacion.
+    """
+    #Primero verificamos si el intervalo dado nos sirve para resolver la funcion
+    if f(a)*f(b) >= 0:
+        print("El intervalo dado no funciona para resolver la funcion.")
+        return None
+
+    #Calculamos el error de la siguinete manera y le damos el numero incial a las iteraciones
+    error_abs = abs(b-a)
+    i = 1
+
+    #Formula que se utiliza en el metodo regula-falsi
+    c = a - (f(a)*(b-a))/(f(b)-f(a))
+
+    #Bucle que se ejecuta hasta que el metodo encuentre la solucion para la funcion propuesta.
+    while i <= n and error_abs > tol:
+        #Termino del resultado de la primera iteracion.
+        c1 = c
+        print("iteracion {:<2} a:{:<2}={:.5f}, b:{:2}={:.5f}, c{:<2}={:.5f}:".format(i, i-1, a, i-1, b, i, c1))
+
+        #Si el resultado es cero la raiz se ha encontrado
+        if f(c1) == 0:
+            print("Raiz encontrada (solucion) x = {:.5f} ".format(c1))
+            return c1
+
+        #Se elije el itervalo para empezar a trabajar es decir, decide que numero es fijo.
+        if f(a)*f(b) < 0:
+            b = c1
+        else:
+            a = c1
+        
+        #Itera nuevamente y continua encontrando la solucion a la funcion.
+        c = a - (f(a)*(b-a)) / (f(b)-f(a))
+        #calcula un nuevo error absoluto
+        error_abs = abs(c1 - c)
+        #Si el error absoluto es menor a la tolerancia para el proceso he imprime resultados.
+        if error_abs < tol:
+            print ("Raiz encontrada (solucion) x = {:.5f} ".format(c))
+            return c
+
+        i += 1
+    #Si no se encuentra un resultado se imprime un mensaje nulo.
+    print("Solucion no encontrada, sin mas iteraciones {}". format (i-1))
+    return None
+
+f = lambda x: m.exp(x) - 4 + x
+a,b = 1,2
+
+regula_falsi(f,a,b)
