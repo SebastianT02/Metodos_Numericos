@@ -1,5 +1,4 @@
 # Método de Gauss
-# Solución de Sistemas de Ecuaciones Lineales de la forma A.X=B
 
 import numpy as np
 
@@ -62,9 +61,6 @@ for i in range(ultfila,0-1,-1):
         AB[k,:] = AB[k,:] - AB[i,:]*factor
     # diagonal a unos
     AB[i,:] = AB[i,:]/AB[i,i]
-X = np.copy(AB[:,ultcolumna])
-X = np.transpose([X])
-
 
 # Salida de datos
 print('Matriz aumentada:')
@@ -75,5 +71,3 @@ print('Eliminacion hacia adelante')
 print(AB2)
 print('Eliminación hacia atrás')
 print(AB)
-print('Solución de X: ')
-print(X)
