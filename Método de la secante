@@ -1,23 +1,87 @@
-% Metodo de la secante
-clear,clc
+# Método de la secante
+import numpy as np
 
-i_f = input('Ingrese una funcion: ');
-f = inline(i_f);
-x0 = input('Ingrese el primer valor x0: ');
-x1 = input('Ingrese el segundo valor x1: ');
-tolerancia = input('Ingrese la tolerancia del error en %: ');
+def secante(fx,xa,tol):
+    """ Funcio para obtener la secante
+    Parameters
+    ----------
+    fx : int
+        ingreso de la funcion.
+    xa : int
+        inicio del punto.
+    tol : int
+        tolerancia.
 
-error = 100;
-n = 1;
-disp('        n          x0              x1          raiz_aprox        error(%)')
+    Returns
+    -------
+    tabla. 
 
-while (error > tolerancia);
-  x2 = x1-f(x1)*(x1-x0)/(f(x1)-f(x0));
-  error = abs((x2-x1)/x2*100);
-  fprintf('\t%i\t%4.6f\t%4.6f\t%4.6f\t%4.6f\n',n,x0,x1,x2,error);
-  x0 = x1;
-  x1 = x2;
-  n = n+1;
-end
-  disp('La aproximacion de la raiz es: ')
-  x2
+    """
+    dx = 4*tol
+    xb = xa + dx
+    tramo = dx
+    tabla = []
+    while (tramo >= tol):
+        fa = fx(xa)
+        fb = fx(xb)
+        xc = xa - fa*(xb-xa)/(fb-fa)
+        tramo = abs(xc-xa)
+        
+        tabla.append([xa,xb,xc,tramo])
+        xb = xa
+        xa = xc
+
+    tabla = np.array(tabla)
+    return(tabla) 
+
+# Ingreso de la funcion
+fx = lambda x: x**2-2*x**2+3
+
+a  = 1
+b  = 2
+xa = 1.5
+tol = 0.003
+tramos = 100
+
+# Procedimiento
+tabla = secante(fx,xa,tol)
+n = len(tabla)
+raiz = tabla[n-1,2]
+
+# Salida
+np.set_printoptions(precision=4)
+print('[xa ,\t xb , \t xc , \t tramo]')
+for i in range(0,n,1):
+    print(tabla[i])
+print('raiz en: ', raiz)
+
+# Grafica
+import matplotlib.pyplot as plt
+
+# Calcula los puntos a graficar
+xi = np.linspace(a,b,tramos+1)
+fi = fx(xi)
+dx = (b-xa)/2
+pendiente = (fx(xa+dx)-fx(xa))/(xa+dx-xa)
+b0 = fx(xa) - pendiente*xa
+tangentei = pendiente*xi+b0
+
+fxa = fx(xa)
+xb = xa + dx
+fxb = fx(xb)
+
+plt.plot(xi,fi, label='f(x)')
+
+plt.plot(xi,tangentei, label='secante')
+plt.plot(xa,fx(xa),'go', label='xa')
+plt.plot(xa+dx,fx(xa+dx),'ro', label='xb')
+plt.plot((-b0/pendiente),0,'yo', label='xc')
+
+plt.plot([xa,xa],[0,fxa],'m')
+plt.plot([xb,xb],[0,fxb],'m')
+
+plt.axhline(0, color='k')
+plt.title('Método de la Secante')
+plt.legend()
+plt.grid()
+plt.show()
