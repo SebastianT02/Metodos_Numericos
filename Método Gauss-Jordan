@@ -1,12 +1,12 @@
 %Método de Gauss-Jordan
 %En el siguiente programa se puede determinar la solución de una matriz mxn.
 %La idea de este programa es ir realizando el procedimiento paso a paso para  finalmente llegar a la respuesta 
-%Ejemplo: A = [1, -1, 0, 3; 2,1,-1,1;3,-1,-1,2;-1,2,3,-1] y B = [1;0;-2;4]
+%Ejemplo: A = [1,-1,0,3; 2,1,-1,1; 3,-1,-1,2; -1,2,3,-1] y B = [-1;0;2;4]
 %Para llegar a la respuesta en el ejemplo recorre el codigo elimiando los numeros debajo de los pivotes, es decir; haciendo ceros
 
 clear,clc %Limpia la ventana de comandos
 
-A = [1, -1, 0, 3; 2,1,-1,1;3,-1,-1,2;-1,2,3,-1];
+A = [1,-1,0,3; 2,1,-1,1; 3,-1,-1,2; -1,2,3,-1];
 b = [-1;0;2;4];
 fprintf('Matriz actual\n')
 Ab=[A b]; %Datos de la matriz
