@@ -1,0 +1,30 @@
+%Método de Gauss-Jordan
+%En el siguiente programa se puede determinar la reduccion de una matriz mxn.
+%Este programa elimina los numeros debajo de los pivotes, es decir; haciendo ceros.
+%Ejemplo: A = [0,4,-2,-2; 1,2,4,-3; -3,-3,8,-2; -1,1,6,-3] y B = [-4;5;7;7]
+
+clear,clc
+%Datos de la matriz
+A=[0,4,-2,-2; 1,2,4,-3; -3,-3,8,-2; -1,1,6,-3];
+b=[-4;5;7;7];
+Ab=[A b]
+n=length(b);
+
+% Si la matriz no queda en diagonal esta realiza un intercambio de filas, para asi eliminar
+% los numeros que se encuentran debajo de los pivotes, haciendo ceros.
+for k=1:n-1 
+    [mayor,j]=max(abs(Ab(k:n,k)));
+    fila=j+k-1;
+    if fila~=k
+        fprintf('intercambio fila %i por fila %i\n',k,fila);
+        Ab([k,fila],:)=Ab([fila,k],:);%intercambio de filas
+        Ab %muestra la matriz
+    end
+    %convierte en matriz triangular
+    for i=k+1:n
+        factor=Ab(i,k)/Ab(k,k);
+        Ab(i,k:n+1)=Ab(i,k:n+1)-factor*Ab(k,k:n+1);          
+    end
+    Ab %muestra la matriz
+end
+fprintf('Matriz resultante\n')
