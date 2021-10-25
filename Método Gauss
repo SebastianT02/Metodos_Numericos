@@ -9,6 +9,18 @@
 %A = [6,0,4; 0,5,4; 1,1, -1];
 %b = [14; 12; 0];
 
+%Ejemplo3: Dentro de un circuito, necesitamos encontrar el valor correspndiente de intensidad
+%de cada una de las mallas del mismo (3 mallas). Dados los valores de voltaje de cada elemento
+% y el valor de potencia total de cada una de las mallas, hallar ecuaciones reducidas para 
+%cada malla del circuito.
+%V1=V6=3v, V2=2v, V3=V8=V9=V10=1v, V4=5v, V5=3v, V7=4V, Pm1=1w, Pm2=2w, Pm3=1W
+
+%Datos de la matriz (EJ2)
+A=[3,2,1; 5,3,4; 1,1,-1];
+b=[1; 2; 1];
+Ab=[A b]
+n=length(b);
+
 clear,clc
 %Datos de la matriz
 A=[6,0,4; 0,5,4; 1,1, -1];
