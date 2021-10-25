@@ -4,11 +4,20 @@
 %Ejemplo: A = [0,4,-2,-2; 1,2,4,-3; -3,-3,8,-2; -1,1,6,-3] y B = [-4;5;7;7]
 
 clear,clc
-%Datos de la matriz
+%Datos de la matriz ejemplo1 
 A=[0,4,-2,-2; 1,2,4,-3; -3,-3,8,-2; -1,1,6,-3];
 b=[-4;5;7;7];
 Ab=[A b]
 n=length(b);
+
+%ejemplo2 
+%Para la vida cotidiana para encontrar un sistema de corrientes i1,i2,i3, cuando se dan los siguientes valores para voltajes, y resistencias
+%E1= 14V, E2= 12V, R1 =6 OHMIOS,R2 = 5 OHMIOS,R3 = 4 OHMIOS 
+%A=[6,0,4; 0,5,4; 1,1,-1];
+%b=[14;12;0];
+%Ab=[A b]
+%n=length(b);
+
 
 % Si la matriz no queda en diagonal esta realiza un intercambio de filas, para asi eliminar
 % los numeros que se encuentran debajo de los pivotes, haciendo ceros.
