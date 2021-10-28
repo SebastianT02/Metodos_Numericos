@@ -1,18 +1,22 @@
 % Autores: Pablo Delgado, Alejandro Romero , Mateo Tacuri
 %
 % Fecha: 2021/10/29
-% Descripcion: Se trata de una serie de algoritmos del álgebra lineal
-%para transformar una matriz A como el producto de una multiplicación
+% Descripcion: Se trata de una serie de algoritmos del Ã¡lgebra lineal
+%para transformar una matriz A como el producto de una multiplicaciÃ³n
 #de dos matrices triangulares U = superior, L =  independiente ,inferior. 
 
 
 % Problema 1:
-%Para la creación de    
+%Para la vida cotidiana para encontrar un sistema de corrientes i1, i2, i3, 
+%cuando se dan los siguientes valores para voltajes, y resistencias
+%E1 = 14V, E2 = 12V, R1 = 6 OHMIOS, R2 = 5 OHMIOS, R3 = 4 OHMIOS 
+%A = [6,0,4; 0,5,4; 1,1, -1];
+%b = [14; 12; 0];
 %
 % 
 clc,clear
-A = [5 2 1 ;3 1 4 ;1 1 1 ];
-
+A = [6,0,4; 0,5,4; 1,1, -1];
+b = [14; 12; 0];
 
 
 try 
@@ -22,3 +26,6 @@ catch err
   %err.identifier
 end
 [L,U] = factorizacion(A)
+fprintf('SoluciÃ³n a la Matriz Ax=b')
+x = sistemaLU(A,b)
+
