@@ -12,6 +12,16 @@ clc
 function [A, b] = gausspivote(A, b)
   n = length(b);
   
+  %Comprobar si la matriz es cuadrada
+  [nf, nc] = size(A)
+  if nf != nc 
+        msgID = 'Matriz:condicion';
+        msg = 'Error: no es matriz cuadrada';
+        #baseException = MException(msgID,msg);
+        #throw(baseException);
+        error(msgID,msg);
+  endif
+  
   for j = 1: n-1,
     
     %Elejir fila con el pivote mas alto
