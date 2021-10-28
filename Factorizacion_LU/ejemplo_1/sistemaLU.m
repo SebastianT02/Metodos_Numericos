@@ -1,9 +1,9 @@
 %solucion x Factorizacion LU Solucion de de una matriz A =LU =x
 %   factorizacion(A)
 %       [L, U] = factorizacion(A)
-%       n= length(A);tamaño de la matriz A
-%       x = zeros(1,n);vector fila
-%       y = zeros(1,n);vector fila
+%       n= length(A);tamaÃ±o de la matriz A
+%       x = zeros(1,n);vector fila trasnpuesta
+%       y = zeros(1,n);vector fila transpuesta
 %       y(1,1)=b(1,1);
 
 %   Copyright 2013-2014 Universidad de Cuenca.
