@@ -1,7 +1,7 @@
 % Autores: Alejandro Romero, Pablo Delgado, Sebastian Tacuri.
 %
-% Fecha: 2021/10/29
-% Descripcion: Se trata de una serie de algoritmos del álgebra lineal 
+% Fecha: 2021/10/28
+% Descripcion: Se trata de una serie de algoritmos del Ã¡lgebra lineal 
 %para determinar los resultados de un sistema de ecuaciones lineales.
 %
 % Problema 2:
