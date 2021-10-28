@@ -2,7 +2,7 @@
 %   gauss_jordan(FUN,A,b)
 %       [A,b] = gauss_jordan(fun, A, b)
 %       n = # componentes de un vector
-%       fun = la funciÛn a tratar
+%       fun = la funci√≥n a tratar
 %       [A,b] intervalo (matriz)
 %
 %   Copyright 2021-2022 Universidad de Cuenca.
@@ -17,7 +17,7 @@ function Ab=gauss_jordan(A,b)
   if Ab(i,i)~=1 
       Ab(i,:)= Ab(i,:)./Ab(i,i);
   end
-%Adem·s el resto de elementos de la columna deben convertirse a 0 :  
+%Adem√°s el resto de elementos de la columna deben convertirse a 0 :  
       for n=1:length(Ab(:,1)) 
         if n~=i 
             Ab(n,:)=-Ab(n,i).*Ab(i,:)+Ab(n,:); 
@@ -56,7 +56,7 @@ function x=respuestas(A,b)
             Ab(i,k:n+1)=Ab(i,k:n+1)-factor*Ab(k,k:n+1);          
         end
   end
-%incÛgnitas
+%inc√≥gnitas
     x=zeros(n,1);
     x(n)=Ab(n,n+1)/Ab(n,n);
     for i=n-1:-1:1 
