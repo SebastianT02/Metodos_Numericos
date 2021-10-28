@@ -1,3 +1,13 @@
+%Gauss-Jordan  Solucion de ecuaciones mediante matrices.
+%   gauss_jordan(FUN,A,b)
+%       [A,b] = gauss_jordan(fun, A, b)
+%       n = # componentes de un vector
+%       fun = la función a tratar
+%       [A,b] intervalo (matriz)
+%
+%   Copyright 2021-2022 Universidad de Cuenca.
+%   $Revision: 0.1 $  $Date: 2021/10/28 $
+%   Built-in function.
 clc
 function [A, b] = gausspivote(A, b)
   n = length(b);
