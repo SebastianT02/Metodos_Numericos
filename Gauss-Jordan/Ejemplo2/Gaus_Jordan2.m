@@ -2,11 +2,11 @@
 %   gauss_jordan(FUN,A,b)
 %       [A,b] = gauss_jordan(fun, A, b)
 %       n = # componentes de un vector
-%       fun = la función a tratar
+%       fun = la funciÃ³n a tratar
 %       [A,b] intervalo (matriz)
 %
 %   Copyright 2021-2022 Universidad de Cuenca.
-%   $Revision: 0.1 $  $Date: 2021/10/29 $
+%   $Revision: 0.1 $  $Date: 2021/10/28 $
 %   Built-in function.
 clc
 function x=gauss_jordan(A,b)
@@ -24,7 +24,7 @@ function x=gauss_jordan(A,b)
             Ab(i,k:n+1)=Ab(i,k:n+1)-factor*Ab(k,k:n+1);          
         end
     end
-%incógnitas
+%incÃ³gnitas
     x=zeros(n,1);
     x(n)=Ab(n,n+1)/Ab(n,n);
     for i=n-1:-1:1 
