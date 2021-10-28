@@ -3,7 +3,7 @@
 % Fecha: 2021/10/29
 % Descripcion: Se trata de una serie de algoritmos del álgebra lineal
 %para transformar una matriz A como el producto de una multiplicación
-#de dos matrices triangulares U = superior, L =  independiente ,inferior. 
+%de dos matrices triangulares U = superior, L =  independiente ,inferior. 
 
 
 % Problema 2:
